@@ -1,3 +1,5 @@
+%define _provides_exceptions pear(data
+
 %define		_class		Contact
 %define		_subclass	AddressBook
 %define		_status		devel
@@ -5,11 +7,11 @@
 
 Summary:	%{_pearname} - Address book export-import class
 Name:		php-pear-%{_pearname}
-Version:	0.1.0
-Release:	%mkrel 7
+Version:	0.5.0
+Release:	%mkrel 1
 License:	PHP License
 Group:		Development/PHP
-Source0:	http://pear.php.net/get/%{_pearname}-%{version}dev1.tar.bz2
+Source0:	http://pear.php.net/get/%{_pearname}-%{version}.tar.bz2
 URL:		http://pear.php.net/package/Contact_AddressBook/
 Requires(post): php-pear
 Requires(preun): php-pear
@@ -44,10 +46,16 @@ find -type f | grep -v ".gif" | grep -v ".png" | grep -v ".jpg" | xargs dos2unix
 %install
 rm -rf %{buildroot}
 
-install -d %{buildroot}%{_datadir}/pear/%{_class}/%{_subclass}
+install -d %{buildroot}%{_datadir}/pear/%{_class}/%{_subclass}/{Builder,Converter,Parser}
 
-install %{_pearname}-%{version}dev1/%{_class}/%{_subclass}.php %{buildroot}%{_datadir}/pear/%{_class}/
-install %{_pearname}-%{version}dev1/%{_class}/%{_subclass}/*.php %{buildroot}%{_datadir}/pear/%{_class}/%{_subclass}
+install %{_pearname}-%{version}/%{_class}/%{_subclass}.php %{buildroot}%{_datadir}/pear/%{_class}/
+install %{_pearname}-%{version}/%{_class}/%{_subclass}/Builder/*.php %{buildroot}%{_datadir}/pear/%{_class}/%{_subclass}/Builder/
+install %{_pearname}-%{version}/%{_class}/%{_subclass}/Converter/*.php %{buildroot}%{_datadir}/pear/%{_class}/%{_subclass}/Converter/
+install %{_pearname}-%{version}/%{_class}/%{_subclass}/Parser/*.php %{buildroot}%{_datadir}/pear/%{_class}/%{_subclass}/Parser/
+install %{_pearname}-%{version}/%{_class}/%{_subclass}/*.php %{buildroot}%{_datadir}/pear/%{_class}/%{_subclass}
+
+install -d %{buildroot}%{_datadir}/pear/data/%{_class}_%{_subclass}
+cp -rp %{_pearname}-%{version}/data %{buildroot}%{_datadir}/pear/data/%{_class}_%{_subclass}/
 
 install -d %{buildroot}%{_datadir}/pear/packages
 install -m0644 package.xml %{buildroot}%{_datadir}/pear/packages/%{_pearname}.xml
@@ -76,9 +84,8 @@ rm -rf %{buildroot}
 
 %files
 %defattr(644,root,root,755)
-%doc %{_pearname}-%{version}dev1/{README.txt,examples,gateaway,definitions}
+%doc %{_pearname}-%{version}/{docs/examples,data}
 %{_datadir}/pear/%{_class}/%{_subclass}.php
 %{_datadir}/pear/%{_class}/%{_subclass}
 %{_datadir}/pear/packages/%{_pearname}.xml
-
-
+%{_datadir}/pear/data/%{_class}_%{_subclass}/data
