@@ -8,7 +8,7 @@
 Summary:	%{_pearname} - Address book export-import class
 Name:		php-pear-%{_pearname}
 Version:	0.5.0
-Release:	%mkrel 3
+Release:	%mkrel 4
 License:	PHP License
 Group:		Development/PHP
 Source0:	http://pear.php.net/get/%{_pearname}-%{version}.tar.bz2
