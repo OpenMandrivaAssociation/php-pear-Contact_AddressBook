@@ -6,7 +6,7 @@
 
 Name:		php-pear-%{upstream_name}
 Version:	0.5.0
-Release:	%mkrel 5
+Release:	%mkrel 6
 Summary:	Address book export-import class
 License:	PHP License
 Group:		Development/PHP
