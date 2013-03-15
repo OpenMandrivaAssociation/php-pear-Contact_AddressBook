@@ -2,8 +2,6 @@
 %define		_subclass	AddressBook
 %define		upstream_name	%{_class}_%{_subclass}
 
-%define _provides_exceptions pear(data
-
 Name:		php-pear-%{upstream_name}
 Version:	0.5.0
 Release:	9
